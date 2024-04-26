@@ -17,8 +17,8 @@
 //struct declarations
 struct Pin{
     char name[20];
-    size_t x = 0;
-    size_t y = 0;
+    int x = 0;
+    int y = 0;
 };
 
 
@@ -34,7 +34,11 @@ struct Pin{
         int max_x = 0;
         int center_x;
         int center_y;
+        int wirelength = 0;
         std::vector<Pin*> pins;
+        std::vector<std::pair<int,int>> Vline;
+        std::vector<int> Vline_x;
+        std::vector<std::pair<int,int>> Hline;
 
     
         void read(std::string inputFile){
@@ -81,6 +85,31 @@ struct Pin{
            outputPins();
         }
 
+        void run() {
+            for(auto pin: pins){
+                Vline.emplace_back(std::make_pair(pin->y, center_y));
+                Vline_x.emplace_back(pin->x);
+                wirelength += abs(pin->y - center_y);
+            }
+            Hline.emplace_back(std::make_pair(min_x, max_x));
+            wirelength += max_x - min_y;
+
+        }
+
+        void outputSolution(std::string outputFile) {
+            std::string print_op = outputFile;
+            std::ofstream outFile(print_op, std::ios::out);
+
+            outFile << "NumRoutedPins = "<<num_pins<<"\n";
+            outFile << "WireLength = "<<wirelength<<"\n";
+
+            for (int i = 0; i < Vline.size(); i++){ //V-line (50,30) (50,90) 
+                outFile << "V-line ("<<Vline_x[i] <<","<<Vline[i].first<<") ("<<Vline_x[i] <<","<<Vline[i].second<<")\n";
+            } //H-line (20,30) (50,30)
+            outFile << "H-line ("<<min_x<<","<<center_y<<") ("<<max_x<<","<<center_y<<")\n";
+
+
+        }
 
     private:
 
