@@ -28,16 +28,26 @@ struct Pin{
         int boundary_x;
         int boundary_y;
         int num_pins;
+        int min_y = 0;
+        int max_y = 0;
+        int min_x = 0;
+        int max_x = 0;
+        int center_x;
+        int center_y;
         std::vector<Pin*> pins;
 
     
-        void readInput(std::string inputFile){
+        void read(std::string inputFile){
            std::string line;
            std::ifstream readfile(inputFile, std::ios::in);
            std::getline(readfile,line);
            sscanf(line.c_str(), "Boundary = (0,0), (%d,%d)", &boundary_x, &boundary_y); //Boundary = (0,0), (100,100)
            std::cout<<"boundary_x: "<<boundary_x<<std::endl;
            std::cout<<"boundary_y: "<<boundary_y<<std::endl;
+
+            min_y = boundary_y;
+            min_x = boundary_x;
+
            std::getline(readfile,line);
            sscanf(line.c_str(), "NumPins = %d", &num_pins);
            std::cout<<"num_pins: "<<num_pins<<std::endl;
@@ -46,8 +56,28 @@ struct Pin{
                 Pin* new_pin = new Pin;
                 std::getline(readfile,line);
                 sscanf(line.c_str(), "PIN %s (%d,%d)", &new_pin->name, &new_pin->x, &new_pin->y); //PIN p0 (88,34)
+                if (new_pin->x < min_x){
+                    min_x = new_pin->x;
+                }
+                if (new_pin->x > max_x){
+                    max_x = new_pin->x;
+                }
+                if (new_pin->y < min_y){
+                    min_y= new_pin->y;
+                }
+                if (new_pin->y > max_y){
+                    max_y = new_pin->y;
+                }
                pins.push_back(new_pin);
            }
+           center_x = (max_x - min_x) / 2;
+           center_y = (max_y - min_y) / 2;
+        //    std::cout<<"min_x: "<<min_x<<std::endl;
+        //    std::cout<<"max_x: "<<max_x<<std::endl;
+        //    std::cout<<"min_y: "<<min_y<<std::endl;
+        //    std::cout<<"max_y: "<<max_y<<std::endl;
+        //    std::cout<<"center_x: "<<center_x<<std::endl;
+        //    std::cout<<"center_y: "<<center_y<<std::endl;
            outputPins();
         }
 

@@ -28,8 +28,8 @@ int main(int argc, char *argv[]){
     std::string output_file = argv[2];
     STClass st;
     st.read(input_file);
-    st.run();
-    st.output_solution();
+    // st.run();
+    // st.output_solution();
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 
