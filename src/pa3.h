@@ -34,7 +34,7 @@ struct Pin{
         int max_x = 0;
         int center_x;
         int center_y;
-        int wirelength = 0;
+        long wirelength = 0;
         std::vector<Pin*> pins;
         std::vector<std::pair<int,int>> Vline;
         std::vector<int> Vline_x;
@@ -76,13 +76,8 @@ struct Pin{
            }
            center_x = (max_x - min_x) / 2;
            center_y = (max_y - min_y) / 2;
-        //    std::cout<<"min_x: "<<min_x<<std::endl;
-        //    std::cout<<"max_x: "<<max_x<<std::endl;
-        //    std::cout<<"min_y: "<<min_y<<std::endl;
-        //    std::cout<<"max_y: "<<max_y<<std::endl;
-        //    std::cout<<"center_x: "<<center_x<<std::endl;
-        //    std::cout<<"center_y: "<<center_y<<std::endl;
-           outputPins();
+
+        //    outputPins();
         }
 
         void run() {

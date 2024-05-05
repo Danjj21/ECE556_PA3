@@ -30,11 +30,11 @@ int main(int argc, char *argv[]){
     st.read(input_file);
     st.run();
     auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
     st.outputSolution(output_file);
 
-    std::cout << "Duration (s): " << duration.count() <<std::endl;
+    std::cout << "Duration (ms): " << duration.count() <<std::endl;
 
 
     return 0;
