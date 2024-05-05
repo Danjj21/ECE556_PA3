@@ -1,6 +1,7 @@
-# Steiner-Tree Construction
+# Steiner-Tree Routing Algorithm
 
-Due: 5/5 23:59 PM on [Canvas](https://canvas.wisc.edu/courses/384667/assignments/2278767)
+Authors: Adithya Pillai Ramesh, Dan Jose Jinoy, Noah James DeGroot## Input
+
 
 ## Problem Description
 
@@ -24,10 +25,7 @@ $$
 
 where $U$ is the number of unconnected pins and $H$ is the half perimeter wirelength (HPWL) of the chip boundary.
 
-Note that a route which has any net routed out of the chip boundary is a failed result.
-
 ## Input
-
 The input file starts with the chip boundary, followed by the description of pins. The description of each pin contains the keyword PIN, followed by the name and the coordinate of the pin. 
 
 | Input Format | Example |
@@ -43,22 +41,17 @@ The sample input for the format defines a net with three pins, `p1`, `p2`, and `
 | NumRoutedPins = number <br> Wirelength = number <br> H-line (x1,y) (x2,y) <br> V-line (x,y1) (x,y2) <br> ... | NumRoutedPins = 3 <br> WireLength = 90 <Br> V-line (50,30) (50,90) <br> H-line (20,30) (50,30) |
 
 
-In the program output, you are asked to give the number of pins, the routing wirelength, and the coordinates of routed net segments. Note that you can output the H-line/V-line in any order.
+## Compiling the Code
 
-## Language
+Once you download and unzip the code, it can be compiled in linux using the following syntax:
 
-You can implement this assignment using any language you like. However, we recommend `C` or `C++` for performance reason.
-
-## Platform
-
-You need to evaluate your program on any Linux machine at CAE.
-
-Please check [my.cae.wisc.edu](https://my.cae.wisc.edu/) for creating an account to log in.
-
+```bash
+g++ -O3 pa3.cpp pa3.h [executable file name]
+```
 
 ## Program Command 
 
-Your program should support the following command-line parameters:
+The program is ran in linux using the following commands:
 
 
 ```bash
@@ -70,36 +63,4 @@ For example:
 ```bash
 ~$ ./router input_pa3/case1 output1
 ```
-
-
-## Submission
-
-You need to submit (1) the source code and (2) a README instruction telling us how to compile and run your source.
-Additionally, you need to submit a report that contains the following three sections:
-
-+ A section describing means to compile and run your code 
-+ A section listing partition results in terms of cut size and runtime for each *PASSED* benchmark 
-+ A section outlining the challenges you encountered and solved during the implementation
-
-Place everything in a single .zip file and submit it to [Course Canvas](https://canvas.wisc.edu/courses/384667/) under the 
-[PA3](https://canvas.wisc.edu/courses/384667/assignments/2278767) page. 
-As we allow you to work in a team of up to 3 members, only one member needs to submit.
-In this case, you will need to *clearly indicate the names of each member in your report*, or
-the other members will receive zero.
-
-## Grading Policy
-
-This programming assignment will be graded based on the following metrics:
-
-+ Correctness reported by the checker program
-+ Solution quality of your partitioned results
-+ Runtime performance of your program
-
-## Academic Integrity
-
-Please refer to the [University Academic Policies](https://conduct.students.wisc.edu/academic-misconduct/) for details about academic integrity.
-
-## Questions
-
-If you have any questions, please create an [issue page](https://github.com/tsung-wei-huang/ece556/issues). We highly encourage you discuss questions with others in the issue page.
 
